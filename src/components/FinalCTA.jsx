@@ -54,7 +54,7 @@ export default function FinalCTA() {
               </svg>
               Share a Referral
             </CTABtn>
-            <CTABtn>Join the Community</CTABtn>
+            <CTABtn href="https://chat.frontlinesedutech.com">Join the Community</CTABtn>
           </div>
         </div>
 
@@ -82,31 +82,43 @@ export default function FinalCTA() {
   );
 }
 
-function CTABtn({ primary, children }) {
+function CTABtn({ primary, href, children }) {
   const [hovered, setHovered] = useState(false);
+  const styles = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 8,
+    padding: '12px 24px',
+    borderRadius: 12,
+    fontFamily: 'Poppins, sans-serif',
+    fontWeight: 500,
+    fontSize: 14,
+    cursor: 'pointer',
+    transition: 'all 0.25s ease',
+    textDecoration: 'none',
+    border: primary ? 'none' : '1px solid #FF8C00',
+    background: primary
+      ? (hovered ? '#F57C00' : '#FF8C00')
+      : (hovered ? '#FFF3E0' : '#FFFFFF'),
+    color: primary ? '#fff' : '#FF8C00',
+    boxShadow: primary ? '0 4px 14px rgba(255,140,0,0.28)' : 'none',
+    transform: hovered ? 'translateY(-1px)' : 'translateY(0)',
+  };
+
+  if (href) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={styles}
+      >{children}</a>
+    );
+  }
   return (
     <button
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 8,
-        padding: '12px 24px',
-        borderRadius: 12,
-        fontFamily: 'Poppins, sans-serif',
-        fontWeight: 500,
-        fontSize: 14,
-        cursor: 'pointer',
-        transition: 'all 0.25s ease',
-        border: primary ? 'none' : '1px solid #FF8C00',
-        background: primary
-          ? (hovered ? '#F57C00' : '#FF8C00')
-          : (hovered ? '#FFF3E0' : '#FFFFFF'),
-        color: primary ? '#fff' : '#FF8C00',
-        boxShadow: primary ? '0 4px 14px rgba(255,140,0,0.28)' : 'none',
-        transform: hovered ? 'translateY(-1px)' : 'translateY(0)',
-      }}
+      style={styles}
     >{children}</button>
   );
 }

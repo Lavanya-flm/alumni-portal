@@ -66,7 +66,7 @@ export default function Hero() {
             {/* Buttons */}
             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               <PrimaryButton />
-              <SecondaryButton />
+    <SecondaryButton href="https://chat.frontlinesedutech.com" />
             </div>
           </div>
 
@@ -137,10 +137,13 @@ function PrimaryButton() {
   );
 }
 
-function SecondaryButton() {
+function SecondaryButton({ href }) {
   const [hovered, setHovered] = useState(false);
   return (
-    <button
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -155,10 +158,12 @@ function SecondaryButton() {
         backdropFilter: 'blur(4px)',
         transition: 'all 0.3s ease',
         cursor: 'pointer',
+        textDecoration: 'none',
+        display: 'inline-block',
       }}
     >
       Join the Community
-    </button>
+    </a>
   );
 }
 
