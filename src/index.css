@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #FAFAFA;
+  color: #111111;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section label */
+.section-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #FF8C00;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+/* Section heading */
+.section-heading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 130%;
+  color: #111111;
+  margin-bottom: 12px;
+}
+
+/* Section subtext */
+.section-subtext {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 170%;
+  color: #666666;
+}
