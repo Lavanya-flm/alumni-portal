@@ -3,24 +3,23 @@ import heroImage from '../assets/hero.png';
 
 export default function Hero() {
   return (
-    <div style={{ background:'#FAFAFA', paddingBottom:56 }}>
-      <div style={{ background:'#FFF9F1', border:'2px solid #FFFFFF', boxShadow:'0px 4px 24px 0px #00000014', borderRadius:'0px 0px 48px 48px', overflow:'hidden' }}>
-        {/* hero-layout controls flex-direction, padding via CSS */}
+    <div className="hero-section">
+      <div className="hero-container">
         <div className="hero-layout">
           {/* Left content */}
-          <div style={{ flex:'1 1 auto', minWidth:0 }}>
-            <div style={{ display:'flex', flexDirection:'column', gap:8 }}>
-              <span className="hero-h1" style={{ fontFamily:'Poppins,sans-serif', fontWeight:500, lineHeight:'110%', color:'#000' }}>
+          <div className="hero-content">
+            <div className="hero-text-wrap">
+              <span className="hero-h1 hero-h1-main">
                 From Learning Together To
               </span>
-              <span className="hero-h1" style={{ fontFamily:'Poppins,sans-serif', fontWeight:500, lineHeight:'110%', color:'#FF8C00' }}>
+              <span className="hero-h1 hero-h1-accent">
                 Winning Together.
               </span>
             </div>
-            <p style={{ fontFamily:'Poppins,sans-serif', fontWeight:300, fontSize:15, lineHeight:'175%', color:'#484848', maxWidth:500, marginTop:20, marginBottom:32 }}>
+            <p className="hero-description">
               A powerful alumni community where Frontliners connect, grow, refer opportunities, mentor students, and build successful careers together.
             </p>
-            <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
+            <div className="hero-buttons">
               <PrimaryBtn />
               <SecondaryBtn href="https://chat.frontlinesedutech.com" />
             </div>
@@ -28,24 +27,21 @@ export default function Hero() {
 
           {/* Right — hero-image class hides on mobile via CSS */}
           <div className="hero-image">
-            <img src={heroImage} alt="Community"
-              style={{ width:'100%', height:'auto', objectFit:'contain', animation:'float 4s ease-in-out infinite' }} />
+            <img src={heroImage} alt="Community" className="hero-img" />
           </div>
         </div>
       </div>
 
       {/* Stats card */}
       <div className="stats-wrap">
-        <div style={{ background:'#fff', border:'0.4px solid #C3DAFF', boxShadow:'0px 0px 24px 0px #3B82F61A', borderRadius:24 }}>
-          {/* stats-grid controls layout via CSS */}
+        <div className="stats-container">
           <div className="stats-grid">
             {stats.map((s,i) => (
-              <div key={i} className={`stats-item${i < stats.length-1 ? ' stats-item-border' : ''}`}
-                style={{ paddingLeft:i>0?28:0, paddingRight:i<stats.length-1?28:0 }}>
-                <div style={{ width:36, height:36, borderRadius:10, background:s.bg, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>{s.icon}</div>
-                <div>
-                  <div style={{ fontFamily:'Poppins,sans-serif', fontWeight:500, fontSize:18, color:'#000' }}>{s.v}</div>
-                  <div style={{ fontFamily:'Poppins,sans-serif', fontWeight:300, fontSize:12, color:'#777', marginTop:4 }}>{s.l}</div>
+              <div key={i} className={`stats-item${i < stats.length-1 ? ' stats-item-border' : ''}`}>
+                <div className="stats-icon" style={{background:s.bg}}>{s.icon}</div>
+                <div className="stats-text">
+                  <div className="stats-value">{s.v}</div>
+                  <div className="stats-label">{s.l}</div>
                 </div>
               </div>
             ))}
@@ -63,8 +59,11 @@ export default function Hero() {
 function PrimaryBtn() {
   const [h,setH] = useState(false);
   return (
-    <button onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)}
-      style={{ background:h?'#F57C00':'#FF8C00', color:'#fff', borderRadius:12, padding:'12px 22px', fontFamily:'Poppins,sans-serif', fontWeight:500, fontSize:14, border:'none', display:'flex', alignItems:'center', gap:8, cursor:'pointer', transition:'all 0.3s', transform:h?'translateY(-2px)':'none', boxShadow:h?'0 6px 20px rgba(255,140,0,0.35)':'0 2px 8px rgba(255,140,0,0.2)' }}>
+    <button 
+      onMouseEnter={()=>setH(true)} 
+      onMouseLeave={()=>setH(false)}
+      className={`hero-btn primary ${h ? 'hover' : ''}`}
+    >
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       Share a Referral
     </button>
@@ -74,9 +73,14 @@ function PrimaryBtn() {
 function SecondaryBtn({ href }) {
   const [h,setH] = useState(false);
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer"
-      onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)}
-      style={{ background:h?'#FFF3E0':'#fff', border:'1px solid #FF8C00', color:'#FF8C00', borderRadius:12, padding:'12px 22px', fontFamily:'Poppins,sans-serif', fontWeight:500, fontSize:14, textDecoration:'none', display:'inline-block', transition:'all 0.3s', cursor:'pointer' }}>
+    <a 
+      href={href} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      onMouseEnter={()=>setH(true)} 
+      onMouseLeave={()=>setH(false)}
+      className={`hero-btn secondary ${h ? 'hover' : ''}`}
+    >
       Join the Community
     </a>
   );

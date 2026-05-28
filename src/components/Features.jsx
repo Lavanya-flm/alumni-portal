@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 const features = [
   { icon:<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF8C00" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>, bg:'#FFF7ED', title:'Referral Network', desc:'Get internal job referrals from trusted alumni working in top companies.' },
   { icon:<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, bg:'#EFF6FF', title:'Mentorship', desc:'Book 1:1 mentorship sessions with industry experts and accelerate your career growth.' },
@@ -10,29 +8,23 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="features-wrap" style={{ background:'#FAFAFA' }}>
-      <div style={{ maxWidth:1280, margin:'0 auto' }}>
-        <div style={{ marginBottom:28 }}>
+    <section className="features-wrap">
+      <div className="section-inner">
+        <div className="features-header">
           <span className="section-label">WHAT YOU CAN DO</span>
           <h2 className="section-heading">Everything you need to grow together</h2>
-          <p className="section-subtext" style={{ maxWidth:540 }}>Explore opportunities, connect with experts, and build your professional network.</p>
+          <p className="section-subtext">Explore opportunities, connect with experts, and build your professional network.</p>
         </div>
         <div className="features-grid">
-          {features.map((f,i) => <Card key={i} {...f} first={i===0} />)}
+          {features.map((f, i) => (
+            <div key={i} className={`feature-card${i === 0 ? ' first' : ''}`}>
+              <div className="feature-icon" style={{ background: f.bg }}>{f.icon}</div>
+              <h3 className="feature-title">{f.title}</h3>
+              <p className="feature-desc">{f.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
-  );
-}
-
-function Card({ icon, bg, title, desc, first }) {
-  const [h, setH] = useState(false);
-  return (
-    <div onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
-      style={{ background: first?'#fff':'#FAFAFA', borderRadius:20, padding:'24px 20px 28px', border:'1px solid #EFEFEF', boxShadow: h?'0 12px 32px rgba(0,0,0,0.09)':'0 2px 14px rgba(0,0,0,0.05)', transform: h?'translateY(-4px)':'none', transition:'all 0.3s', display:'flex', flexDirection:'column', minHeight:190 }}>
-      <div style={{ width:48, height:48, borderRadius:12, background:bg, display:'flex', alignItems:'center', justifyContent:'center', marginBottom:16, flexShrink:0 }}>{icon}</div>
-      <h3 style={{ fontFamily:'Poppins,sans-serif', fontWeight:600, fontSize:14, color:'#111', marginBottom:8 }}>{title}</h3>
-      <p style={{ fontFamily:'Poppins,sans-serif', fontWeight:300, fontSize:13, color:'#666', lineHeight:'165%', margin:0 }}>{desc}</p>
-    </div>
   );
 }
