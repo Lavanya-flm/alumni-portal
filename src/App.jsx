@@ -10,14 +10,14 @@ import Footer from './components/Footer';
 export default function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Hero />
       <Features />
       <ReferralHub />
       <MentorConnect />
       <Events />
       <FinalCTA />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
